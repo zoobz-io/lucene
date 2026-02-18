@@ -1,0 +1,39 @@
+codecov:
+  require_ci_to_pass: true
+
+coverage:
+  precision: 2
+  round: down
+  range: "60...100"
+
+  status:
+    project:
+      default:
+        threshold: 1%
+        target: 70%
+    patch:
+      default:
+        target: 80%
+        threshold: 0%
+
+ignore:
+  - "**/*_test.go"
+  - "**/mock_*.go"
+  - "docs/**"
+  - ".github/**"
+  - "vendor/**"
+
+flags:
+  unit:
+    paths:
+      - "*.go"
+      - "!testing/**"
+    carryforward: true
+  integration:
+    paths:
+      - "testing/integration/**"
+    carryforward: true
+
+comment:
+  layout: "reach,diff,flags,tree"
+  behavior: default
