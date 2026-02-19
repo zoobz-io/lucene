@@ -41,14 +41,17 @@ linters:
           - goconst
           - dupl
           - govet
+          - errcheck
 
-settings:
-  errcheck:
-    check-type-assertions: true
-  govet:
-    enable-all: true
-  dupl:
-    threshold: 150
-  goconst:
-    min-len: 3
-    min-occurrences: 3
+  settings:
+    errcheck:
+      check-type-assertions: true
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+    dupl:
+      threshold: 150
+    goconst:
+      min-len: 3
+      min-occurrences: 3
