@@ -29,6 +29,5 @@ vendor/
 *.prof
 *.pprof
 
-# Debug
-debug
-__debug_bin*
+# Claude
+.claude/

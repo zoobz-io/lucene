@@ -5,9 +5,9 @@ package benchmarks
 import (
 	"testing"
 
-	"github.com/zoobzio/lucene"
-	"github.com/zoobzio/lucene/elasticsearch"
-	"github.com/zoobzio/lucene/opensearch"
+	"github.com/zoobz-io/lucene"
+	"github.com/zoobz-io/lucene/elasticsearch"
+	"github.com/zoobz-io/lucene/opensearch"
 )
 
 func BenchmarkRender_Elasticsearch_Simple(b *testing.B) {

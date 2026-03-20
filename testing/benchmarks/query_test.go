@@ -5,7 +5,7 @@ package benchmarks
 import (
 	"testing"
 
-	"github.com/zoobzio/lucene"
+	"github.com/zoobz-io/lucene"
 )
 
 type benchDoc struct {

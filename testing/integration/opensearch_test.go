@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/zoobzio/lucene"
-	"github.com/zoobzio/lucene/opensearch"
+	"github.com/zoobz-io/lucene"
+	"github.com/zoobz-io/lucene/opensearch"
 )
 
 func opensearchEndpoint() string {
