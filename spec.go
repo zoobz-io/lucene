@@ -3,7 +3,7 @@ package lucene
 import (
 	"strings"
 
-	"github.com/zoobzio/sentinel"
+	"github.com/zoobz-io/sentinel"
 )
 
 // FieldKind categorizes field types for validation.

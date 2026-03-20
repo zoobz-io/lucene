@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/zoobzio/lucene"
+	"github.com/zoobz-io/lucene"
 )
 
 type testDoc struct {

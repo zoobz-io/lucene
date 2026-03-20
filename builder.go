@@ -3,7 +3,7 @@ package lucene
 import (
 	"fmt"
 
-	"github.com/zoobzio/sentinel"
+	"github.com/zoobz-io/sentinel"
 )
 
 // Builder provides schema-validated query building for type T.

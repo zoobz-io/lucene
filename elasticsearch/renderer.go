@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/zoobzio/lucene"
-	"github.com/zoobzio/lucene/internal/marshal"
+	"github.com/zoobz-io/lucene"
+	"github.com/zoobz-io/lucene/internal/marshal"
 )
 
 // Version represents an Elasticsearch version.

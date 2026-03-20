@@ -1,13 +1,13 @@
 # lucene
 
-[![CI Status](https://github.com/zoobzio/lucene/workflows/CI/badge.svg)](https://github.com/zoobzio/lucene/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/zoobzio/lucene/graph/badge.svg?branch=main)](https://codecov.io/gh/zoobzio/lucene)
-[![Go Report Card](https://goreportcard.com/badge/github.com/zoobzio/lucene)](https://goreportcard.com/report/github.com/zoobzio/lucene)
-[![CodeQL](https://github.com/zoobzio/lucene/workflows/CodeQL/badge.svg)](https://github.com/zoobzio/lucene/security/code-scanning)
-[![Go Reference](https://pkg.go.dev/badge/github.com/zoobzio/lucene.svg)](https://pkg.go.dev/github.com/zoobzio/lucene)
-[![License](https://img.shields.io/github/license/zoobzio/lucene)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/zoobzio/lucene)](go.mod)
-[![Release](https://img.shields.io/github/v/release/zoobzio/lucene)](https://github.com/zoobzio/lucene/releases)
+[![CI Status](https://github.com/zoobz-io/lucene/workflows/CI/badge.svg)](https://github.com/zoobz-io/lucene/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/zoobz-io/lucene/graph/badge.svg?branch=main)](https://codecov.io/gh/zoobz-io/lucene)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zoobz-io/lucene)](https://goreportcard.com/report/github.com/zoobz-io/lucene)
+[![CodeQL](https://github.com/zoobz-io/lucene/workflows/CodeQL/badge.svg)](https://github.com/zoobz-io/lucene/security/code-scanning)
+[![Go Reference](https://pkg.go.dev/badge/github.com/zoobz-io/lucene.svg)](https://pkg.go.dev/github.com/zoobz-io/lucene)
+[![License](https://img.shields.io/github/license/zoobz-io/lucene)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/zoobz-io/lucene)](go.mod)
+[![Release](https://img.shields.io/github/v/release/zoobz-io/lucene)](https://github.com/zoobz-io/lucene/releases)
 
 Type-safe search queries for Elasticsearch and OpenSearch. Compile-time field validation ensures your queries reference fields that actually exist.
 
@@ -34,7 +34,7 @@ Your Go struct becomes the source of truth. No more runtime surprises from typos
 ## Install
 
 ```bash
-go get github.com/zoobzio/lucene
+go get github.com/zoobz-io/lucene
 ```
 
 ## Quick Start
@@ -45,8 +45,8 @@ package main
 import (
     "fmt"
 
-    "github.com/zoobzio/lucene"
-    "github.com/zoobzio/lucene/elasticsearch"
+    "github.com/zoobz-io/lucene"
+    "github.com/zoobz-io/lucene/elasticsearch"
 )
 
 type Article struct {
@@ -112,7 +112,7 @@ lucene works alongside other zoobzio packages:
 
 | Package | Purpose |
 |---------|---------|
-| [sentinel](https://github.com/zoobzio/sentinel) | Struct metadata extraction (powers lucene's schema) |
+| [sentinel](https://github.com/zoobz-io/sentinel) | Struct metadata extraction (powers lucene's schema) |
 
 ## Documentation
 
@@ -126,7 +126,7 @@ lucene works alongside other zoobzio packages:
 - [Rendering](docs/guides/rendering.md) - ES vs OpenSearch output
 
 **Reference**
-- [API Reference](https://pkg.go.dev/github.com/zoobzio/lucene) - Full package documentation
+- [API Reference](https://pkg.go.dev/github.com/zoobz-io/lucene) - Full package documentation
 
 ## Contributing
 

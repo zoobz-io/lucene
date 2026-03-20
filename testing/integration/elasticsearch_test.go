@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/zoobzio/lucene"
-	"github.com/zoobzio/lucene/elasticsearch"
+	"github.com/zoobz-io/lucene"
+	"github.com/zoobz-io/lucene/elasticsearch"
 )
 
 type testDoc struct {
