@@ -25,6 +25,7 @@ type Search struct {
 	trackTotalHits any // bool or int
 	minScore       *float64
 	timeout        *string
+	searchPipeline *string
 }
 
 // NewSearch creates a new search request builder.
@@ -105,6 +106,12 @@ func (s *Search) Timeout(t string) *Search {
 	return s
 }
 
+// SearchPipeline sets the search pipeline name (OpenSearch only).
+func (s *Search) SearchPipeline(name string) *Search {
+	s.searchPipeline = &name
+	return s
+}
+
 // QueryValue returns the query.
 func (s *Search) QueryValue() Query { return s.query }
 
@@ -137,6 +144,9 @@ func (s *Search) MinScoreValue() *float64 { return s.minScore }
 
 // TimeoutValue returns the timeout if set.
 func (s *Search) TimeoutValue() *string { return s.timeout }
+
+// SearchPipelineValue returns the search pipeline name if set.
+func (s *Search) SearchPipelineValue() *string { return s.searchPipeline }
 
 // Err returns any error in the search request.
 func (s *Search) Err() error {

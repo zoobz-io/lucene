@@ -670,6 +670,9 @@ func (r *Renderer) renderQuery(q lucene.Query) (any, error) {
 	case *lucene.KnnQuery:
 		return r.renderKnn(v)
 
+	case *lucene.HybridQuery:
+		return nil, fmt.Errorf("hybrid queries are only supported by OpenSearch")
+
 	// Geo queries
 	case *lucene.GeoDistanceQuery:
 		return r.renderGeoDistance(v), nil

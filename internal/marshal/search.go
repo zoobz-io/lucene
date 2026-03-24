@@ -14,6 +14,7 @@ type SearchRequest struct {
 	TrackTotalHits any            `json:"track_total_hits,omitempty"` // bool or int
 	MinScore       *float64       `json:"min_score,omitempty"`
 	Timeout        *string        `json:"timeout,omitempty"`
+	SearchPipeline *string        `json:"search_pipeline,omitempty"`
 }
 
 // SourceFilter specifies include/exclude patterns for _source filtering.

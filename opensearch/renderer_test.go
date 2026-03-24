@@ -74,6 +74,40 @@ func TestRenderer_RenderQuery_Knn(t *testing.T) {
 	}
 }
 
+func TestRenderer_RenderQuery_Hybrid(t *testing.T) {
+	b := mustBuilder(t)
+	r := NewRenderer(V2)
+
+	vector := []float32{0.1, 0.2, 0.3}
+	q := b.Hybrid(
+		b.Match("name", "search term"),
+		b.Knn("embedding", vector).K(10),
+	)
+	out, err := r.RenderQuery(q)
+	if err != nil {
+		t.Fatalf("RenderQuery() error = %v", err)
+	}
+
+	var result map[string]any
+	if err := json.Unmarshal(out, &result); err != nil {
+		t.Fatalf("json.Unmarshal() error = %v", err)
+	}
+
+	hybrid, ok := result["hybrid"].(map[string]any)
+	if !ok {
+		t.Fatal("expected hybrid key")
+	}
+
+	queries, ok := hybrid["queries"].([]any)
+	if !ok {
+		t.Fatal("expected queries array under hybrid")
+	}
+
+	if len(queries) != 2 {
+		t.Errorf("len(queries) = %d, want 2", len(queries))
+	}
+}
+
 func TestRenderer_RenderQuery_Bool(t *testing.T) {
 	b := mustBuilder(t)
 	r := NewRenderer(V2)

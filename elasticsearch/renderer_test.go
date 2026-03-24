@@ -508,3 +508,14 @@ func TestRenderer_Render_SearchWithError(t *testing.T) {
 		t.Error("Render() should return error for search with invalid query")
 	}
 }
+
+func TestRenderer_RenderQuery_HybridUnsupported(t *testing.T) {
+	b := mustBuilder(t)
+	r := NewRenderer(V8)
+
+	q := b.Hybrid(b.Match("name", "test"))
+	_, err := r.RenderQuery(q)
+	if err == nil {
+		t.Error("RenderQuery() should return error for hybrid query on Elasticsearch")
+	}
+}

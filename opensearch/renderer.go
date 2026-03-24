@@ -115,6 +115,9 @@ func (r *Renderer) Render(s *lucene.Search) ([]byte, error) {
 	// Timeout
 	req.Timeout = s.TimeoutValue()
 
+	// Search pipeline
+	req.SearchPipeline = s.SearchPipelineValue()
+
 	return json.Marshal(req)
 }
 
@@ -670,6 +673,9 @@ func (r *Renderer) renderQuery(q lucene.Query) (any, error) {
 	case *lucene.KnnQuery:
 		return r.renderKnn(v)
 
+	case *lucene.HybridQuery:
+		return r.renderHybrid(v)
+
 	// Geo queries
 	case *lucene.GeoDistanceQuery:
 		return r.renderGeoDistance(v), nil
@@ -903,6 +909,25 @@ func (r *Renderer) renderKnn(q *lucene.KnnQuery) (any, error) {
 		"knn": map[string]marshal.KnnFieldInnerOS{
 			q.Field(): fieldInner,
 		},
+	}, nil
+}
+
+func (r *Renderer) renderHybrid(q *lucene.HybridQuery) (any, error) {
+	inner := marshal.HybridInner{
+		Boost: q.BoostValue(),
+	}
+
+	if queries := q.Queries(); len(queries) > 0 {
+		rendered, err := r.renderClauses(queries)
+		if err != nil {
+			return nil, err
+		}
+		inner.Queries = rendered
+	}
+
+	return marshal.SimpleQuery[marshal.HybridInner]{
+		QueryType: "hybrid",
+		Inner:     inner,
 	}, nil
 }
 
