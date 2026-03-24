@@ -64,6 +64,8 @@ const (
 
 	// OpKnn performs k-nearest neighbors vector search.
 	OpKnn
+	// OpHybrid combines multiple queries with server-side score normalization.
+	OpHybrid
 
 	// OpGeoDistance matches documents within a radius.
 	OpGeoDistance

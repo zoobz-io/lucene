@@ -236,6 +236,12 @@ type GeoBoundingBoxInner struct {
 
 // === Vector query inner types ===
 
+// HybridInner is the inner structure for hybrid queries (OpenSearch only).
+type HybridInner struct {
+	Queries []any    `json:"queries,omitempty"`
+	Boost   *float64 `json:"boost,omitempty"`
+}
+
 // KnnInnerES is the inner structure for knn queries (Elasticsearch format).
 type KnnInnerES struct {
 	Field         string    `json:"field"`
