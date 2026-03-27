@@ -69,10 +69,7 @@ func postJSONOpenSearch(t *testing.T, endpoint, path, body string) (*http.Respon
 func TestOpenSearch_TermQuery(t *testing.T) {
 	endpoint := skipIfNoOpenSearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	query := builder.Term("status", "active")
 	renderer := opensearch.NewRenderer(opensearch.V2)
@@ -105,10 +102,7 @@ func TestOpenSearch_TermQuery(t *testing.T) {
 func TestOpenSearch_BoolQuery(t *testing.T) {
 	endpoint := skipIfNoOpenSearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	query := builder.Bool().
 		Must(builder.Match("title", "search term")).
@@ -137,10 +131,7 @@ func TestOpenSearch_BoolQuery(t *testing.T) {
 func TestOpenSearch_FullSearch(t *testing.T) {
 	_ = skipIfNoOpenSearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	search := lucene.NewSearch().
 		Query(
@@ -181,10 +172,7 @@ func TestOpenSearch_FullSearch(t *testing.T) {
 func TestOpenSearch_Aggregations(t *testing.T) {
 	endpoint := skipIfNoOpenSearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	aggs := []lucene.Aggregation{
 		builder.TermsAgg("by_category", "category").Size(10),
@@ -232,10 +220,7 @@ func TestOpenSearch_KnnQuery(t *testing.T) {
 		Embedding []float32 `json:"embedding"`
 	}
 
-	builder, err := lucene.New[vectorDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[vectorDoc]()
 
 	vector := []float32{0.1, 0.2, 0.3, 0.4, 0.5}
 	query := builder.Knn("embedding", vector).K(10).NumCandidates(100)

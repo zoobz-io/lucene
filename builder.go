@@ -13,15 +13,12 @@ type Builder[T any] struct {
 }
 
 // New creates a new Builder for type T.
-// Returns an error if T is not a struct or cannot be inspected.
-func New[T any]() (*Builder[T], error) {
+// Panics if T is not a struct type.
+func New[T any]() *Builder[T] {
 	sentinel.Tag("json")
 	sentinel.Tag("lucene")
 
-	metadata, err := sentinel.TryInspect[T]()
-	if err != nil {
-		return nil, fmt.Errorf("lucene: failed to inspect type: %w", err)
-	}
+	metadata := sentinel.Inspect[T]()
 
 	spec := buildSpec(metadata)
 	fields := make(map[string]*FieldSpec, len(spec.Fields))
@@ -29,7 +26,7 @@ func New[T any]() (*Builder[T], error) {
 		fields[spec.Fields[i].Name] = &spec.Fields[i]
 	}
 
-	return &Builder[T]{spec: spec, fields: fields}, nil
+	return &Builder[T]{spec: spec, fields: fields}
 }
 
 // Spec returns the extracted schema specification.

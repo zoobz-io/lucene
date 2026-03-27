@@ -20,12 +20,12 @@ type benchDoc struct {
 func BenchmarkBuilder_New(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		_, _ = lucene.New[benchDoc]()
+		_ = lucene.New[benchDoc]()
 	}
 }
 
 func BenchmarkQuery_Term(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -34,7 +34,7 @@ func BenchmarkQuery_Term(b *testing.B) {
 }
 
 func BenchmarkQuery_Match(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -43,7 +43,7 @@ func BenchmarkQuery_Match(b *testing.B) {
 }
 
 func BenchmarkQuery_Match_WithOptions(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -56,7 +56,7 @@ func BenchmarkQuery_Match_WithOptions(b *testing.B) {
 }
 
 func BenchmarkQuery_Bool_Simple(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -67,7 +67,7 @@ func BenchmarkQuery_Bool_Simple(b *testing.B) {
 }
 
 func BenchmarkQuery_Bool_Complex(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -93,7 +93,7 @@ func BenchmarkQuery_Bool_Complex(b *testing.B) {
 }
 
 func BenchmarkQuery_Range(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -102,7 +102,7 @@ func BenchmarkQuery_Range(b *testing.B) {
 }
 
 func BenchmarkQuery_MultiMatch(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -113,7 +113,7 @@ func BenchmarkQuery_MultiMatch(b *testing.B) {
 }
 
 func BenchmarkQuery_Nested_Deep(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -131,7 +131,7 @@ func BenchmarkQuery_Nested_Deep(b *testing.B) {
 }
 
 func BenchmarkAggregation_Terms(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -140,7 +140,7 @@ func BenchmarkAggregation_Terms(b *testing.B) {
 }
 
 func BenchmarkAggregation_Complex(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -153,7 +153,7 @@ func BenchmarkAggregation_Complex(b *testing.B) {
 }
 
 func BenchmarkSearch_Full(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

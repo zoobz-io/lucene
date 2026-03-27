@@ -16,11 +16,7 @@ type testDoc struct {
 
 func mustBuilder(t *testing.T) *lucene.Builder[testDoc] {
 	t.Helper()
-	b, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
-	return b
+	return lucene.New[testDoc]()
 }
 
 func TestRenderer_RenderQuery_Term(t *testing.T) {

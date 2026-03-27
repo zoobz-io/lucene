@@ -9,10 +9,7 @@ type vectorTestDoc struct {
 }
 
 func TestKnnQuery(t *testing.T) {
-	b, err := New[vectorTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[vectorTestDoc]()
 
 	t.Run("basic knn", func(t *testing.T) {
 		vector := []float32{0.1, 0.2, 0.3}

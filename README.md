@@ -20,7 +20,7 @@ type Product struct {
     Price    float64 `json:"price"`
 }
 
-b, _ := lucene.New[Product]()
+b := lucene.New[Product]()
 
 // This compiles - "title" exists
 query := b.Match("title", "laptop")
@@ -59,10 +59,7 @@ type Article struct {
 
 func main() {
     // Create a type-safe builder
-    b, err := lucene.New[Article]()
-    if err != nil {
-        panic(err)
-    }
+    b := lucene.New[Article]()
 
     // Build a search request
     search := lucene.NewSearch().

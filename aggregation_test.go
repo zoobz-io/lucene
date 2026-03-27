@@ -9,10 +9,7 @@ type aggTestDoc struct {
 }
 
 func TestTermsAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.TermsAgg("by_category", "category").Size(10).MinDocCount(1)
 	if a.Err() != nil {
@@ -30,10 +27,7 @@ func TestTermsAgg(t *testing.T) {
 }
 
 func TestTermsAgg_InvalidField(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.TermsAgg("by_invalid", "invalid")
 	if a.Err() == nil {
@@ -42,10 +36,7 @@ func TestTermsAgg_InvalidField(t *testing.T) {
 }
 
 func TestHistogramAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.Histogram("price_hist", "price").Interval(10)
 	if a.Err() != nil {
@@ -57,10 +48,7 @@ func TestHistogramAgg(t *testing.T) {
 }
 
 func TestDateHistogramAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.DateHistogram("by_month", "timestamp").CalendarInterval("month")
 	if a.Err() != nil {
@@ -72,10 +60,7 @@ func TestDateHistogramAgg(t *testing.T) {
 }
 
 func TestRangeAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.RangeAgg("price_ranges", "price").
 		AddRange(0, 50).
@@ -91,10 +76,7 @@ func TestRangeAgg(t *testing.T) {
 }
 
 func TestNestedAggs(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.TermsAgg("by_category", "category").
 		SubAgg(b.Avg("avg_price", "price")).
@@ -109,10 +91,7 @@ func TestNestedAggs(t *testing.T) {
 }
 
 func TestMetricAggs(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	tests := []struct {
 		name string
@@ -139,10 +118,7 @@ func TestMetricAggs(t *testing.T) {
 }
 
 func TestTopHitsAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	a := b.TopHits("top_products").Size(3).Sort("price", "desc")
 	if a.Err() != nil {
@@ -157,10 +133,7 @@ func TestTopHitsAgg(t *testing.T) {
 }
 
 func TestPipelineAggs(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	tests := []struct {
 		name string
@@ -185,10 +158,7 @@ func TestPipelineAggs(t *testing.T) {
 }
 
 func TestFilterAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	t.Run("basic filter", func(t *testing.T) {
 		filter := b.Term("category", "electronics")
@@ -227,10 +197,7 @@ func TestFilterAgg(t *testing.T) {
 }
 
 func TestDateRangeAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	t.Run("basic date_range", func(t *testing.T) {
 		a := b.DateRangeAgg("time_ranges", "timestamp").
@@ -287,10 +254,7 @@ func TestDateRangeAgg(t *testing.T) {
 }
 
 func TestFiltersAgg(t *testing.T) {
-	b, err := New[aggTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[aggTestDoc]()
 
 	t.Run("basic filters", func(t *testing.T) {
 		a := b.FiltersAgg("status_filters").

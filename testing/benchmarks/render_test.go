@@ -11,7 +11,7 @@ import (
 )
 
 func BenchmarkRender_Elasticsearch_Simple(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := elasticsearch.NewRenderer(elasticsearch.V8)
 	query := builder.Term("status", "active")
 
@@ -23,7 +23,7 @@ func BenchmarkRender_Elasticsearch_Simple(b *testing.B) {
 }
 
 func BenchmarkRender_Elasticsearch_Complex(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := elasticsearch.NewRenderer(elasticsearch.V8)
 	query := builder.Bool().
 		Must(
@@ -46,7 +46,7 @@ func BenchmarkRender_Elasticsearch_Complex(b *testing.B) {
 }
 
 func BenchmarkRender_Elasticsearch_Search(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := elasticsearch.NewRenderer(elasticsearch.V8)
 	search := lucene.NewSearch().
 		Query(
@@ -69,7 +69,7 @@ func BenchmarkRender_Elasticsearch_Search(b *testing.B) {
 }
 
 func BenchmarkRender_OpenSearch_Simple(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := opensearch.NewRenderer(opensearch.V2)
 	query := builder.Term("status", "active")
 
@@ -81,7 +81,7 @@ func BenchmarkRender_OpenSearch_Simple(b *testing.B) {
 }
 
 func BenchmarkRender_OpenSearch_Complex(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := opensearch.NewRenderer(opensearch.V2)
 	query := builder.Bool().
 		Must(
@@ -104,7 +104,7 @@ func BenchmarkRender_OpenSearch_Complex(b *testing.B) {
 }
 
 func BenchmarkRender_OpenSearch_Search(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := opensearch.NewRenderer(opensearch.V2)
 	search := lucene.NewSearch().
 		Query(
@@ -127,7 +127,7 @@ func BenchmarkRender_OpenSearch_Search(b *testing.B) {
 }
 
 func BenchmarkRender_Aggs(b *testing.B) {
-	builder, _ := lucene.New[benchDoc]()
+	builder := lucene.New[benchDoc]()
 	renderer := elasticsearch.NewRenderer(elasticsearch.V8)
 	aggs := []lucene.Aggregation{
 		builder.TermsAgg("by_category", "category").

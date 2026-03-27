@@ -10,10 +10,7 @@ type termTestDoc struct {
 }
 
 func TestTermQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("valid field", func(t *testing.T) {
 		q := b.Term("status", "active")
@@ -47,10 +44,7 @@ func TestTermQuery(t *testing.T) {
 }
 
 func TestTermsQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("valid field", func(t *testing.T) {
 		q := b.Terms("status", "active", "pending", "complete")
@@ -71,10 +65,7 @@ func TestTermsQuery(t *testing.T) {
 }
 
 func TestRangeQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("valid field with bounds", func(t *testing.T) {
 		q := b.Range("price").Gte(10).Lt(100)
@@ -105,10 +96,7 @@ func TestRangeQuery(t *testing.T) {
 }
 
 func TestExistsQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("valid field", func(t *testing.T) {
 		q := b.Exists("status")
@@ -129,10 +117,7 @@ func TestExistsQuery(t *testing.T) {
 }
 
 func TestIDsQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	q := b.IDs("doc1", "doc2", "doc3")
 	if q.Err() != nil {
@@ -144,10 +129,7 @@ func TestIDsQuery(t *testing.T) {
 }
 
 func TestPrefixQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("basic prefix", func(t *testing.T) {
 		q := b.Prefix("status", "act")
@@ -188,10 +170,7 @@ func TestPrefixQuery(t *testing.T) {
 }
 
 func TestWildcardQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("basic wildcard", func(t *testing.T) {
 		q := b.Wildcard("status", "act*")
@@ -229,10 +208,7 @@ func TestWildcardQuery(t *testing.T) {
 }
 
 func TestRegexpQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("basic regexp", func(t *testing.T) {
 		q := b.Regexp("status", "[a-z]+")
@@ -274,10 +250,7 @@ func TestRegexpQuery(t *testing.T) {
 }
 
 func TestFuzzyQuery(t *testing.T) {
-	b, err := New[termTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[termTestDoc]()
 
 	t.Run("basic fuzzy", func(t *testing.T) {
 		q := b.Fuzzy("status", "actve")
