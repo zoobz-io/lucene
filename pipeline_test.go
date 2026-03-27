@@ -9,10 +9,7 @@ type pipelineTestDoc struct {
 }
 
 func TestPipelineAggBase(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	t.Run("buckets_path", func(t *testing.T) {
 		a := b.AvgBucket("avg_monthly", "by_month>avg_price")
@@ -37,10 +34,7 @@ func TestPipelineAggBase(t *testing.T) {
 }
 
 func TestAvgBucketAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	a := b.AvgBucket("avg_monthly", "by_month>avg_price")
 	if a.Err() != nil {
@@ -55,10 +49,7 @@ func TestAvgBucketAgg(t *testing.T) {
 }
 
 func TestSumBucketAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	a := b.SumBucket("sum_monthly", "by_month>sum_price")
 	if a.Err() != nil {
@@ -70,10 +61,7 @@ func TestSumBucketAgg(t *testing.T) {
 }
 
 func TestMaxBucketAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	a := b.MaxBucket("max_monthly", "by_month>max_price")
 	if a.Err() != nil {
@@ -85,10 +73,7 @@ func TestMaxBucketAgg(t *testing.T) {
 }
 
 func TestMinBucketAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	a := b.MinBucket("min_monthly", "by_month>min_price")
 	if a.Err() != nil {
@@ -100,10 +85,7 @@ func TestMinBucketAgg(t *testing.T) {
 }
 
 func TestDerivativeAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	t.Run("basic derivative", func(t *testing.T) {
 		a := b.Derivative("price_change", "by_month>avg_price")
@@ -124,10 +106,7 @@ func TestDerivativeAgg(t *testing.T) {
 }
 
 func TestCumulativeSumAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	a := b.CumulativeSum("running_total", "by_month>sum_price")
 	if a.Err() != nil {
@@ -139,10 +118,7 @@ func TestCumulativeSumAgg(t *testing.T) {
 }
 
 func TestMovingAvgAgg(t *testing.T) {
-	b, err := New[pipelineTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[pipelineTestDoc]()
 
 	t.Run("basic moving_avg", func(t *testing.T) {
 		a := b.MovingAvg("smoothed", "by_month>avg_price")

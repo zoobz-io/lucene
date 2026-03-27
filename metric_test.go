@@ -9,10 +9,7 @@ type metricTestDoc struct {
 }
 
 func TestAvgAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic avg", func(t *testing.T) {
 		a := b.Avg("avg_price", "price")
@@ -46,10 +43,7 @@ func TestAvgAgg(t *testing.T) {
 }
 
 func TestSumAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic sum", func(t *testing.T) {
 		a := b.Sum("total_price", "price")
@@ -77,10 +71,7 @@ func TestSumAgg(t *testing.T) {
 }
 
 func TestMinAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic min", func(t *testing.T) {
 		a := b.Min("min_price", "price")
@@ -108,10 +99,7 @@ func TestMinAgg(t *testing.T) {
 }
 
 func TestMaxAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic max", func(t *testing.T) {
 		a := b.Max("max_price", "price")
@@ -139,10 +127,7 @@ func TestMaxAgg(t *testing.T) {
 }
 
 func TestCountAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic count", func(t *testing.T) {
 		a := b.Count("count_price", "price")
@@ -163,10 +148,7 @@ func TestCountAgg(t *testing.T) {
 }
 
 func TestCardinalityAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic cardinality", func(t *testing.T) {
 		a := b.Cardinality("unique_categories", "category")
@@ -194,10 +176,7 @@ func TestCardinalityAgg(t *testing.T) {
 }
 
 func TestStatsAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic stats", func(t *testing.T) {
 		a := b.Stats("price_stats", "price")
@@ -225,10 +204,7 @@ func TestStatsAgg(t *testing.T) {
 }
 
 func TestExtendedStatsAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic extended_stats", func(t *testing.T) {
 		a := b.ExtendedStats("price_extended", "price")
@@ -263,10 +239,7 @@ func TestExtendedStatsAgg(t *testing.T) {
 }
 
 func TestPercentilesAgg(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic percentiles", func(t *testing.T) {
 		a := b.Percentiles("price_pct", "price")
@@ -301,10 +274,7 @@ func TestPercentilesAgg(t *testing.T) {
 }
 
 func TestTopHitsAgg_Options(t *testing.T) {
-	b, err := New[metricTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[metricTestDoc]()
 
 	t.Run("basic top_hits", func(t *testing.T) {
 		a := b.TopHits("top_products")

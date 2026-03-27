@@ -8,10 +8,7 @@ type nestedTestDoc struct {
 }
 
 func TestNestedQuery(t *testing.T) {
-	b, err := New[nestedTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[nestedTestDoc]()
 
 	t.Run("basic nested", func(t *testing.T) {
 		inner := b.Match("name", "john")
@@ -56,10 +53,7 @@ func TestNestedQuery(t *testing.T) {
 }
 
 func TestHasChildQuery(t *testing.T) {
-	b, err := New[nestedTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[nestedTestDoc]()
 
 	t.Run("basic has_child", func(t *testing.T) {
 		inner := b.Term("id", "child1")
@@ -109,10 +103,7 @@ func TestHasChildQuery(t *testing.T) {
 }
 
 func TestHasParentQuery(t *testing.T) {
-	b, err := New[nestedTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[nestedTestDoc]()
 
 	t.Run("basic has_parent", func(t *testing.T) {
 		inner := b.Term("id", "parent1")

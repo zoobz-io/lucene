@@ -103,10 +103,7 @@ func TestHighlight_Field(t *testing.T) {
 }
 
 func TestHighlightFieldBuilder(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	field := NewHighlightField("title").
 		FragmentSize(100).
@@ -161,10 +158,7 @@ func TestHighlight_Err(t *testing.T) {
 }
 
 func TestHighlight_Err_InvalidQuery(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	invalidQuery := b.Match("invalid_field", "test")
 	field := NewHighlightField("title").

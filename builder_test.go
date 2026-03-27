@@ -14,10 +14,7 @@ type testProduct struct {
 }
 
 func TestNew(t *testing.T) {
-	b, err := New[testProduct]()
-	if err != nil {
-		t.Fatalf("New[testProduct]() error = %v", err)
-	}
+	b := New[testProduct]()
 
 	if b.spec == nil {
 		t.Fatal("Builder.spec is nil")
@@ -29,10 +26,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestBuilder_Spec(t *testing.T) {
-	b, err := New[testProduct]()
-	if err != nil {
-		t.Fatalf("New[testProduct]() error = %v", err)
-	}
+	b := New[testProduct]()
 
 	spec := b.Spec()
 
@@ -65,10 +59,7 @@ func TestBuilder_Spec(t *testing.T) {
 }
 
 func TestBuilder_ResolveField(t *testing.T) {
-	b, err := New[testProduct]()
-	if err != nil {
-		t.Fatalf("New[testProduct]() error = %v", err)
-	}
+	b := New[testProduct]()
 
 	t.Run("existing field", func(t *testing.T) {
 		spec, err := b.resolveField("name")
@@ -89,10 +80,7 @@ func TestBuilder_ResolveField(t *testing.T) {
 }
 
 func TestBuilder_ValidateField(t *testing.T) {
-	b, err := New[testProduct]()
-	if err != nil {
-		t.Fatalf("New[testProduct]() error = %v", err)
-	}
+	b := New[testProduct]()
 
 	t.Run("valid field", func(t *testing.T) {
 		spec, errQ := b.validateField(OpTerm, "name")
@@ -119,8 +107,10 @@ func TestBuilder_ValidateField(t *testing.T) {
 }
 
 func TestNew_NonStruct(t *testing.T) {
-	_, err := New[string]()
-	if err == nil {
-		t.Error("New[string]() should return error for non-struct type")
-	}
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("New[string]() should panic for non-struct type")
+		}
+	}()
+	_ = New[string]()
 }

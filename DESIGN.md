@@ -188,14 +188,11 @@ const (
 ### Initialization
 
 ```go
-func New[T any]() (*Builder[T], error) {
+func New[T any]() *Builder[T] {
     sentinel.Tag("json")
     sentinel.Tag("lucene")  // custom tag for field options
 
-    metadata, err := sentinel.TryInspect[T]()
-    if err != nil {
-        return nil, err
-    }
+    metadata := sentinel.Inspect[T]()
 
     spec := buildSpec(metadata)
     fields := make(map[string]*FieldSpec, len(spec.Fields))
@@ -336,10 +333,8 @@ func (b *Builder[T]) resolveField(name string) (*FieldSpec, error) {
 ### 5.1 Initialization
 
 ```go
-b, err := lucene.New[Product]()
-if err != nil {
-    // struct inspection failed
-}
+b := lucene.New[Product]()
+// panics if Product is not a struct type
 ```
 
 ### 5.2 Query Builders

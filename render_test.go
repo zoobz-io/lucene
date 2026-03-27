@@ -19,10 +19,7 @@ func TestNewSearch(t *testing.T) {
 }
 
 func TestSearch_Query(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	q := b.Match("title", "test")
 	s := NewSearch().Query(q)
@@ -33,10 +30,7 @@ func TestSearch_Query(t *testing.T) {
 }
 
 func TestSearch_Aggs(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	agg1 := b.TermsAgg("by_category", "category")
 	agg2 := b.Avg("avg_price", "price")
@@ -144,10 +138,7 @@ func TestSearch_Highlight(t *testing.T) {
 }
 
 func TestSearch_Err(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	// Search with invalid query field
 	q := b.Match("invalid_field", "test")
@@ -159,10 +150,7 @@ func TestSearch_Err(t *testing.T) {
 }
 
 func TestSearch_Err_InvalidAgg(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	agg := b.TermsAgg("by_invalid", "invalid_field")
 	s := NewSearch().Aggs(agg)
@@ -173,10 +161,7 @@ func TestSearch_Err_InvalidAgg(t *testing.T) {
 }
 
 func TestSearch_ChainedBuilder(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	h := NewHighlight().
 		Fields("title").
@@ -231,10 +216,7 @@ func TestSearch_ChainedBuilder(t *testing.T) {
 }
 
 func TestSearch_Err_Highlight(t *testing.T) {
-	b, err := New[searchTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[searchTestDoc]()
 
 	// Create a highlight with invalid query
 	invalidQuery := b.Match("invalid_field", "test")

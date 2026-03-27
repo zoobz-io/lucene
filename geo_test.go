@@ -12,10 +12,7 @@ type geoTestDoc struct {
 }
 
 func TestGeoDistanceQuery(t *testing.T) {
-	b, err := New[geoTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[geoTestDoc]()
 
 	t.Run("basic geo_distance", func(t *testing.T) {
 		q := b.GeoDistance("location", 40.73, -73.93)
@@ -64,10 +61,7 @@ func TestGeoDistanceQuery(t *testing.T) {
 }
 
 func TestGeoBoundingBoxQuery(t *testing.T) {
-	b, err := New[geoTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[geoTestDoc]()
 
 	t.Run("basic geo_bounding_box", func(t *testing.T) {
 		q := b.GeoBoundingBox("location")

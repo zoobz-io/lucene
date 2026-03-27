@@ -9,10 +9,7 @@ type fulltextTestDoc struct {
 }
 
 func TestMatchQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic match", func(t *testing.T) {
 		q := b.Match("title", "search term")
@@ -60,10 +57,7 @@ func TestMatchQuery(t *testing.T) {
 }
 
 func TestMatchPhraseQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic match phrase", func(t *testing.T) {
 		q := b.MatchPhrase("title", "exact phrase")
@@ -91,10 +85,7 @@ func TestMatchPhraseQuery(t *testing.T) {
 }
 
 func TestMultiMatchQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic multi match", func(t *testing.T) {
 		q := b.MultiMatch("search term", "title", "description")
@@ -131,10 +122,7 @@ func TestMultiMatchQuery(t *testing.T) {
 }
 
 func TestMatchPhrasePrefixQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic match_phrase_prefix", func(t *testing.T) {
 		q := b.MatchPhrasePrefix("title", "quick bro")
@@ -182,10 +170,7 @@ func TestMatchPhrasePrefixQuery(t *testing.T) {
 }
 
 func TestQueryStringQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic query_string", func(t *testing.T) {
 		q := b.QueryString("title:test AND content:example")
@@ -231,10 +216,7 @@ func TestQueryStringQuery(t *testing.T) {
 }
 
 func TestSimpleQueryStringQuery(t *testing.T) {
-	b, err := New[fulltextTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[fulltextTestDoc]()
 
 	t.Run("basic simple_query_string", func(t *testing.T) {
 		q := b.SimpleQueryString("test + example -exclude")

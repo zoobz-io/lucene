@@ -77,10 +77,7 @@ func skipIfNoElasticsearch(t *testing.T) string {
 func TestElasticsearch_TermQuery(t *testing.T) {
 	endpoint := skipIfNoElasticsearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	query := builder.Term("status", "active")
 	renderer := elasticsearch.NewRenderer(elasticsearch.V8)
@@ -114,10 +111,7 @@ func TestElasticsearch_TermQuery(t *testing.T) {
 func TestElasticsearch_BoolQuery(t *testing.T) {
 	endpoint := skipIfNoElasticsearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	query := builder.Bool().
 		Must(builder.Match("title", "search term")).
@@ -147,10 +141,7 @@ func TestElasticsearch_BoolQuery(t *testing.T) {
 func TestElasticsearch_FullSearch(t *testing.T) {
 	_ = skipIfNoElasticsearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	search := lucene.NewSearch().
 		Query(
@@ -191,10 +182,7 @@ func TestElasticsearch_FullSearch(t *testing.T) {
 func TestElasticsearch_Aggregations(t *testing.T) {
 	endpoint := skipIfNoElasticsearch(t)
 
-	builder, err := lucene.New[testDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	builder := lucene.New[testDoc]()
 
 	aggs := []lucene.Aggregation{
 		builder.TermsAgg("by_category", "category").Size(10),

@@ -9,10 +9,7 @@ type compoundTestDoc struct {
 }
 
 func TestBoolQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("empty bool", func(t *testing.T) {
 		q := b.Bool()
@@ -68,10 +65,7 @@ func TestBoolQuery(t *testing.T) {
 }
 
 func TestMatchAllQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("basic", func(t *testing.T) {
 		q := b.MatchAll()
@@ -92,10 +86,7 @@ func TestMatchAllQuery(t *testing.T) {
 }
 
 func TestMatchNoneQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	q := b.MatchNone()
 	if q.Err() != nil {
@@ -107,10 +98,7 @@ func TestMatchNoneQuery(t *testing.T) {
 }
 
 func TestConvenienceMethods(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("And", func(t *testing.T) {
 		q := b.And(
@@ -151,10 +139,7 @@ func TestConvenienceMethods(t *testing.T) {
 }
 
 func TestBoostingQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("basic boosting", func(t *testing.T) {
 		positive := b.Match("name", "search")
@@ -203,10 +188,7 @@ func TestBoostingQuery(t *testing.T) {
 }
 
 func TestDisMaxQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("basic dis_max", func(t *testing.T) {
 		q := b.DisMax(
@@ -252,10 +234,7 @@ func TestDisMaxQuery(t *testing.T) {
 }
 
 func TestConstantScoreQuery(t *testing.T) {
-	b, err := New[compoundTestDoc]()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
+	b := New[compoundTestDoc]()
 
 	t.Run("basic constant_score", func(t *testing.T) {
 		filter := b.Term("status", "active")
